@@ -1,0 +1,12 @@
+.background{
+    background-image:url('../static_contents/bg.jpg');
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+	/* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    color: whitesmoke;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+
+}

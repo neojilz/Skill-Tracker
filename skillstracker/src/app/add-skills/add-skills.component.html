@@ -1,0 +1,27 @@
+<div class="skillsClass">
+  <div class="container">
+    <div class="row">
+      <form class="col-md-6 col-md-offset-3">
+        <div class="form-group row">
+          <div class=col-md-12>
+            <label class="col-md-3">Add Skill</label>
+            <input class="col-md-6" type="text" id="skillid" name="skillname" [(ngModel)]="newSkillName">
+            <input name="addskill" id="addskill" class="btn btn-primary col-md-2" (click)="addSkills()" type="button" value="Add">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class=col-md-12>
+            <div class="form-group col-md-12" *ngFor="let skill of skillList">
+              <label for=""></label>
+              <input type="text" class="col-md-5" name="skillname" id="skillid" aria-describedby="helpId" placeholder="" value="{{skill.skill_name}}"  [disabled]="isSkillDisabled">
+              <input name="editskill" id="editskill" class="btn btn-dark col-md-3" type="button" value="Edit"(click)="editSkill()" >
+              <input name="addskill" id="addskill" class="btn btn-success col-md-3" type="button" value="Delete"(click)="deleteSkill()">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--
+[(ngModel)]="skill.skill_name"-->
