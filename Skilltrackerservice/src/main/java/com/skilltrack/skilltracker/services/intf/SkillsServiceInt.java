@@ -13,4 +13,6 @@ public interface SkillsServiceInt {
 
 	String addSkillForAssociate(int associateId,SkillRequest req);
 
+	Iterable<Skills> deleteskill(SkillRequest req);
+
 }

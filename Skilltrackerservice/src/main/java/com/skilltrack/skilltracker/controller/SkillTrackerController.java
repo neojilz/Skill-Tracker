@@ -36,6 +36,11 @@ public class SkillTrackerController {
 		return skillsServiceInt.getAllSkills();
 	}
 	
+	@RequestMapping(path = "/deleteskill", method = RequestMethod.POST)
+	public Iterable<Skills> deleteSkills(@RequestBody SkillRequest req) {
+		return skillsServiceInt.deleteskill(req);
+	}
+	
 	@RequestMapping(path = "/addSkillForAssociate", method = RequestMethod.POST)
 	public String addSkillForAssociate(@RequestParam int associateId,@RequestBody SkillRequest req) {
 		return skillsServiceInt.addSkillForAssociate(associateId,req);

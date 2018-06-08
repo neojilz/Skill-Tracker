@@ -12,9 +12,9 @@ import { SERVICE_URI } from '../configuration';
 export class SkillsService {
 
 
-  _addSkillsURL = SERVICE_URI+"/addskills";
-  _getSkillsURL = SERVICE_URI+"/getskills";
-
+  _addSkillsURL = SERVICE_URI+"/saveskills";
+  _getSkillsURL = SERVICE_URI+"/getallskills";
+  _deleteSkillsURL = SERVICE_URI+"/deleteskill";
   constructor(private _http: Http) { }
 
   addSkills(skill: Skill): Observable<any> {
@@ -29,6 +29,12 @@ export class SkillsService {
     .map((response:Response)=><Skill[]> response.json())
   }
 
+  deleteSkill(skill: Skill): Observable<any> {
+    return this._http.post(this._deleteSkillsURL, skill)
+      .map(res => {
+        this.responseHandling(res);
+      });
+  }
 
 
 

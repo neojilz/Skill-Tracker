@@ -53,4 +53,12 @@ AssociateRepository associateRepository;
 		return "success";
 	}
 
+	@Override
+	public Iterable<Skills> deleteskill(SkillRequest req) {
+		Skills skill = new Skills();
+		skill.setSkill_id(req.getSkill_id());
+		skillRepository.delete(skill);
+		return null;
+	}
+
 }

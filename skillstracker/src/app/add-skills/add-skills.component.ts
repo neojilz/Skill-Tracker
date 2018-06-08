@@ -10,20 +10,22 @@ export class AddSkillsComponent implements OnInit {
 
   newSkillName:String;
   skill:Skill;
-  isSkillDisabled:boolean=true;
-  skillList:Skill[]=[{
-    "skill_id":10,
-    "skill_name":"HTML"
+  editedSkillId:number;
+  editText:String = "Edit";
+  skillList:Skill[];
+  // skillList:Skill[]=[{
+  //   "skill_id":10,
+  //   "skill_name":"HTML"
 
-  },{
-    "skill_id":12,
-    "skill_name":"Java"
-  },
-  {
-    "skill_id":13,
-    "skill_name":"Mule"
-  }
-  ];
+  // },{
+  //   "skill_id":12,
+  //   "skill_name":"Java"
+  // },
+  // {
+  //   "skill_id":13,
+  //   "skill_name":"Mule"
+  // }
+  // ];
 
   constructor(private skillsService:SkillsService) { }
 
@@ -46,7 +48,7 @@ export class AddSkillsComponent implements OnInit {
 
   getSkills(){
     this.skillsService.getSkills().subscribe(
-      data => this.skillList, 
+      data => this.skillList =data,  
       error => {},
       () => {}
 
@@ -54,8 +56,36 @@ export class AddSkillsComponent implements OnInit {
 
   }
 
-  editSkill(){
-    this.isSkillDisabled = false;
+  editSkill(editingSkill:Skill){
+    if(this.editedSkillId === editingSkill.skill_id){
+      this.skill = new Skill();
+      this.skill.skill_id=editingSkill.skill_id;
+      this.skill.skill_name=editingSkill.skill_name;
+      this.skillsService.addSkills(editingSkill).subscribe(
+          data => {},
+          error => {},
+          () => {
+            this.editText = "Edit";
+            this.editedSkillId=0;
+            this.getSkills();
+          }
+      )
+
+    }
+    else {
+      this.editedSkillId = editingSkill.skill_id;
+      this.editText = "Update";
+    }
+   
+  }
+  deleteSkill(deletingSkill:Skill){
+    this.skillsService.deleteSkill(deletingSkill).subscribe(
+      data => {},
+      error => {},
+      () =>{
+        this.getSkills();
+      }
+    )
   }
 
 }
