@@ -10,6 +10,7 @@ import { AssociateSearchComponent } from './associate-search/associate-search.co
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 
 import {SkillsService } from './services/skills.service';
+import { AssociateComponent } from './associate/associate.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {SkillsService } from './services/skills.service';
     AppComponent,
     AssociateSearchComponent,
     AddSkillsComponent,
+    AssociateComponent,
   ],
   imports: [
     BrowserModule,

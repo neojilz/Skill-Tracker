@@ -1,3 +1,5 @@
+import { Skill } from "./skill";
+
 export class Associate{
     constructor(){}
     associate_id:number;
@@ -14,4 +16,5 @@ export class Associate{
     remark:String;
     strength:String;
     weakness:String;
+    skills:Skill[];
 }

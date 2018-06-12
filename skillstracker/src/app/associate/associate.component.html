@@ -1,0 +1,68 @@
+<div class="associateClass">
+  <div class="container">
+    <div class="row">
+      <form class="col-md-12" [formGroup]="associateForm" (ngSubmit)="onWorkoutFormSubmit()">
+        <div class="form-group row">
+          <div class="col-md-5">
+            <div class="form-group row">
+              <label for="name" class="col-md-4 col-md-offset-2 col-form-label">Name:</label>
+              <input formControlName="name" class="form-control col-md-6">
+            </div>
+            <div class="form-group row">
+              <label for="associateId" class="col-md-4 col-md-offset-2 col-form-label">Associate ID:</label>
+              <input formControlName="associateId" class="form-control col-md-6">
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-md-4 col-md-offset-2 col-form-label">Email ID:</label>
+              <input formControlName="email" class="form-control col-md-6">
+            </div>
+            <div class="form-group row">
+              <label for="mobile" class="col-md-4 col-md-offset-2 col-form-label">Mobile No:</label>
+              <input formControlName="mobile" class="form-control col-md-6">
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group row">
+              <input type="file" accept="image/*" (change)="handleFileInput($event.target.files)" style="display: none;" #file>
+              <img [src]="imageUrl" (click)="file.click()">
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-group row">
+              <input type="button" formControlName="status_green" class="status-green-button form-control col-md-6 col-md-offset-2" value="Click Me"
+                (click)="setGreenStatus()">
+            </div>
+            <div class=" form-group row">
+              <input type="button" formControlName="status_red" class="status-red-button form-control col-md-6 col-md-offset-2" (click)="setRedStatus()">
+            </div>
+            <div class=" form-group row">
+              <input type="button" formControlName="status_blue" class="status-blue-button form-control col-md-6 col-md-offset-2" (click)="setBlueStatus()">
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="form-group row">
+              <input type="button" formControlName="level1" class="form-control col-md-6 col-md-offset-2" (click)="setlevel1()">
+            </div>
+            <div class="form-group row">
+              <input type="button" formControlName="level2" class="form-control col-md-6 col-md-offset-2" (click)="setlevel2()">
+            </div>
+            <div class="form-group row">
+              <input type="button" formControlName="level3" class="form-control col-md-6 col-md-offset-2" (click)="setlevel3()">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <label for="remark" class="col-md-4 col-md-offset-2 col-form-label">Remarks:</label>
+            <textarea formControlName="remark" class="form-control col-md-12" rows="6"></textarea>
+          </div>
+        </div>
+        <hr/>
+        <div class="form-group row">
+          <label for="skills" class="col-md-6">Skills</label>
+          <div class="col-md-5"  formControlName="skillsList" *ngFor="let skill of skillList" >
+            {{skill.skill_name}}
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
