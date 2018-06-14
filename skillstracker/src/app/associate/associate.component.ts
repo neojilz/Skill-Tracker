@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SkillsService } from '../services/skills.service';
 import { Skill } from '../models/skill';
+// import {MatSliderModule} from '@angular/material/slider';
 @Component({
   selector: 'app-associate',
   templateUrl: './associate.component.html',
@@ -30,7 +31,9 @@ export class AssociateComponent implements OnInit {
     remark:new FormControl('',Validators.required),
     strength:new FormControl('',Validators.required),
     weakness:new FormControl('',Validators.required),
-    skillsList:new FormGroup({skill: new FormControl('',Validators.required)}),
+    // skillsArray:new FormControl('',Validators.required),
+    // skillsList:new FormControl('',Validators.required),
+   skillsList:new FormGroup({skillForm: new FormControl('',Validators.required)}),
     
   })
 
@@ -43,6 +46,7 @@ export class AssociateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getAllSkills();
     this.associateId = this.route.snapshot.paramMap.get('associateId');
     this.page = this.route.snapshot.data.page;
     if(this.page === "editassociate"){
@@ -50,11 +54,13 @@ export class AssociateComponent implements OnInit {
       this.saveEmployee();
     }
     else if (this.page === "createassociate") {
+      console.log("Creating Associate");
       this.header ="create";
+      console.log(this.skillList);
       this.associate = new Associate();
-      this.associateForm.setValue({
-        skillList:this.skillList
-      });
+      // this.associateForm.setValue({
+      //    skillList:this.skillList
+      //  });
     }
     
 
@@ -66,11 +72,8 @@ export class AssociateComponent implements OnInit {
 
   getAllSkills(){
     this.skillsService.getSkills().subscribe(
-      data => this.skillList =data,  
-      error => {},
-      () => {
-      }
 
+     data => { console.log("getting skills"); this.skillList = data }
     )
   }
 

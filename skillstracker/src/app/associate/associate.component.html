@@ -52,17 +52,20 @@
           </div>
           <div class="col-md-3">
             <label for="remark" class="col-md-4 col-md-offset-2 col-form-label">Remarks:</label>
-            <textarea formControlName="remark" class="form-control col-md-12" rows="6"></textarea>
+            <textarea  formControlName="remark" class="form-control col-md-12" rows="6">asdfasdfaf</textarea>
           </div>
         </div>
         <hr/>
         <div class="form-group row">
-          <label for="skills" class="col-md-6">Skills</label>
-          <div class="col-md-5"  formControlName="skillsList" *ngFor="let skill of skillList" >
-            {{skill.skill_name}}
+          <label for="skills" class="col-md-12">Skills</label>
+          <div class="col-md-4" formGroupName="skillsList" *ngFor="let skill of skillList">
+             <label class="col-md-4">{{skill.skill_name}}</label>
+             <input type="range" min="0" max="20" class="col-md-6 slider" formControlName="skillForm" [value]="skill.skill_level">
+             <label>{{skill.skill_level}}</label>
             </div>
         </div>
       </form>
     </div>
   </div>
 </div>
+<!-- *ngFor="let skill of skillList" -->

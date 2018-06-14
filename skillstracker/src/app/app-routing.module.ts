@@ -8,11 +8,11 @@ import {AssociateComponent} from './associate/associate.component';
 const route:Routes =[
 {path:'searchassociate',component:AssociateSearchComponent},
 {path:'addskills',component:AddSkillsComponent},
-{path:'addemployee',component:AssociateComponent}
+{path:'addemployee',component:AssociateComponent,data:{page:'createassociate'}}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(route,{enableTracing:true})
+  imports: [RouterModule.forRoot(route,{enableTracing:false})
   ],
   exports:[RouterModule],
   declarations: []
