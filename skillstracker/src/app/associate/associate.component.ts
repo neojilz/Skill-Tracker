@@ -17,25 +17,28 @@ export class AssociateComponent implements OnInit {
   associateId:String;
   header:String;
   skillList:Skill[];
-  associateForm =  new FormGroup({
-    name: new FormControl('',Validators.required),
-    associateId: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.required),
-    mobile: new FormControl('',Validators.required),
-    status_green: new FormControl('',Validators.required),
-    status_red: new FormControl('',Validators.required),
-    status_blue: new FormControl('',Validators.required),
-    level1:new FormControl('',Validators.required),
-    level2:new FormControl('',Validators.required),
-    level3:new FormControl('',Validators.required),
-    remark:new FormControl('',Validators.required),
-    strength:new FormControl('',Validators.required),
-    weakness:new FormControl('',Validators.required),
-    // skillsArray:new FormControl('',Validators.required),
-    // skillsList:new FormControl('',Validators.required),
-   skillsList:new FormGroup({skillForm: new FormControl('',Validators.required)}),
+  level:String;
+  status:String;
+  // associateForm =  new FormGroup({
+  //   name: new FormControl('Hello',Validators.required),
+  //   associateId: new FormControl('',Validators.required),
+  //   email: new FormControl('',Validators.required),
+  //   mobile: new FormControl('',Validators.required),
+  //   status_green: new FormControl('',Validators.required),
+  //   status_red: new FormControl('',Validators.required),
+  //   status_blue: new FormControl('',Validators.required),
+  //   level1:new FormControl('',Validators.required),
+  //   level2:new FormControl('',Validators.required),
+  //   level3:new FormControl('',Validators.required),
+  //   gender:new FormControl('',Validators.required),
+  //   remark:new FormControl('',Validators.required),
+  //   strength:new FormControl('',Validators.required),
+  //   weakness:new FormControl('',Validators.required),
+  //   // skillsArray:new FormControl('',Validators.required),
+  //   // skillsList:new FormControl('',Validators.required),
+  //  skillsList:new FormGroup({skillForm: new FormControl('',Validators.required)}),
     
-  })
+  // })
 
   constructor(
     //This introduced for the snapshot error.
@@ -66,6 +69,10 @@ export class AssociateComponent implements OnInit {
 
   }
 
+  onAssociateFormSubmit(){
+
+  }
+
   saveEmployee(){
 
   }
@@ -76,5 +83,30 @@ export class AssociateComponent implements OnInit {
      data => { console.log("getting skills"); this.skillList = data }
     )
   }
+
+sliderChange(value: any, skill: Skill) {
+    skill.skill_level = value;
+  }
+
+
+setRedStatus(){
+  
+  
+}
+
+setGreenStatus(){
+ 
+}
+
+setBlueStatus(){
+ 
+}
+
+setLevels(){
+
+console.log("Inside levels");
+  
+}
+
 
 }

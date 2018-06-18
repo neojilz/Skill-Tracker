@@ -13,6 +13,7 @@ export class Associate{
     level1:boolean;
     level2:boolean;
     level3:boolean;
+    gender:String;
     remark:String;
     strength:String;
     weakness:String;

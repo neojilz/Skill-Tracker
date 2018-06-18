@@ -1,24 +1,25 @@
 <div class="associateClass">
   <div class="container">
     <div class="row">
-      <form class="col-md-12" [formGroup]="associateForm" (ngSubmit)="onWorkoutFormSubmit()">
+      <form class="col-md-12">
+        <br>
         <div class="form-group row">
           <div class="col-md-5">
             <div class="form-group row">
-              <label for="name" class="col-md-4 col-md-offset-2 col-form-label">Name:</label>
-              <input formControlName="name" class="form-control col-md-6">
+              <label for="name" class="col-md-4 col-md-offset-2">Name:</label>
+              <input name="name" type="text" class="form-control col-md-6" [(ngModel)]="associate.name">
             </div>
             <div class="form-group row">
               <label for="associateId" class="col-md-4 col-md-offset-2 col-form-label">Associate ID:</label>
-              <input formControlName="associateId" class="form-control col-md-6">
+              <input name="associateId" class="form-control col-md-6">
             </div>
             <div class="form-group row">
               <label for="email" class="col-md-4 col-md-offset-2 col-form-label">Email ID:</label>
-              <input formControlName="email" class="form-control col-md-6">
+              <input name="email" class="form-control col-md-6">
             </div>
             <div class="form-group row">
               <label for="mobile" class="col-md-4 col-md-offset-2 col-form-label">Mobile No:</label>
-              <input formControlName="mobile" class="form-control col-md-6">
+              <input name="mobile" class="form-control col-md-6">
             </div>
           </div>
           <div class="col-md-2">
@@ -29,40 +30,65 @@
           </div>
           <div class="col-md-1">
             <div class="form-group row">
-              <input type="button" formControlName="status_green" class="status-green-button form-control col-md-6 col-md-offset-2" value="Click Me"
+              <input type="button" name="status_green" class="status-green-button form-control col-md-6 col-md-offset-2" value="Click Me"
                 (click)="setGreenStatus()">
             </div>
-            <div class=" form-group row">
-              <input type="button" formControlName="status_red" class="status-red-button form-control col-md-6 col-md-offset-2" (click)="setRedStatus()">
+            <div class="form-group row">
+              <input type="button" name="status_red" class="status-red-button form-control col-md-6 col-md-offset-2" (click)="setRedStatus()">
             </div>
             <div class=" form-group row">
-              <input type="button" formControlName="status_blue" class="status-blue-button form-control col-md-6 col-md-offset-2" (click)="setBlueStatus()">
+              <input type="button" name="status_blue" class="status-blue-button form-control col-md-6 col-md-offset-2" (click)="setBlueStatus()">
             </div>
           </div>
           <div class="col-md-1">
             <div class="form-group row">
-              <input type="button" formControlName="level1" class="form-control col-md-6 col-md-offset-2" (click)="setlevel1()">
+              <input type="button" name="level1" class="form-control col-md-6 col-md-offset-2"  (click)="setLevels()" [(ngModel)]="level">
             </div>
             <div class="form-group row">
-              <input type="button" formControlName="level2" class="form-control col-md-6 col-md-offset-2" (click)="setlevel2()">
+              <input type="button" name="level2" class="form-control col-md-6 col-md-offset-2"  (click)="setLevels()" [(ngModel)]="level">
             </div>
             <div class="form-group row">
-              <input type="button" formControlName="level3" class="form-control col-md-6 col-md-offset-2" (click)="setlevel3()">
+              <input type="button" name="level3" class="form-control col-md-6 col-md-offset-2" [value]="L3" (click)="setLevels()" [(ngModel)]="level">
             </div>
           </div>
           <div class="col-md-3">
+            <div class="form-group row">
+              <label for="mobile" class="col-md-6  col-form-label">Gender:</label>
+              <label for="male"   class="col-md-2  col-form-label">Male</label>
+              <input type="radio" name="gender" name="gender"  class="form-control col-md-1">
+              <label for="female" class="col-md-2  col-form-label">Female</label>
+              <input type="radio" name="gender"   name="gender" class="form-control col-md-1">
+            </div>
             <label for="remark" class="col-md-4 col-md-offset-2 col-form-label">Remarks:</label>
-            <textarea  formControlName="remark" class="form-control col-md-12" rows="6">asdfasdfaf</textarea>
+            <textarea  name="remark" class="form-control col-md-12" rows="5">asdfasdfaf</textarea>
           </div>
         </div>
         <hr/>
         <div class="form-group row">
           <label for="skills" class="col-md-12">Skills</label>
-          <div class="col-md-4" formGroupName="skillsList" *ngFor="let skill of skillList">
+          <div class="col-md-4" name="skillsList" *ngFor="let skill of skillList">
              <label class="col-md-4">{{skill.skill_name}}</label>
-             <input type="range" min="0" max="20" class="col-md-6 slider" formControlName="skillForm" [value]="skill.skill_level">
+             <input type="range" min="0" max="20" class="col-md-6 slider" name="skillForm" value="{{skill.skill_level}}"  id="myRange" (input)="sliderChange($event.target.value,skill)">
              <label>{{skill.skill_level}}</label>
             </div>
+        </div>
+        <hr/>
+        Additional Skills goes here.
+        
+        <hr/>
+        <div class="form-group row">
+          <div class="col-md-6 offset-md-6">
+           <div class="form-group row col-md-12" *ngIf="header==='create'">
+             <input name="reset" id="resetId" class="col-md-3  btn btn-secondary " type="button" value="RESET">
+             <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" type="button" value="CANCEL">
+             <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" type="submit" value="SAVE">
+          </div>
+          <div class="form-group row col-md-12" *ngIf="header==='update'">
+             <input name="delete" id="deleteId" class="col-md-3  btn btn-secondary " type="button" value="DELETE">
+             <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" type="button" value="CANCEL">
+             <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" type="button" value="UPDATE">
+          </div>
+        </div>
         </div>
       </form>
     </div>
