@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SkillsService } from '../services/skills.service';
 import { Skill } from '../models/skill';
+import { ChangeDetectorRef } from '@angular/core';
 // import {MatSliderModule} from '@angular/material/slider';
 @Component({
   selector: 'app-associate',
@@ -16,9 +17,10 @@ export class AssociateComponent implements OnInit {
   page:String;
   associateId:String;
   header:String;
+  level:String ="";
+  status:String = "";
   skillList:Skill[];
-  level:String;
-  status:String;
+  
   // associateForm =  new FormGroup({
   //   name: new FormControl('Hello',Validators.required),
   //   associateId: new FormControl('',Validators.required),
@@ -44,9 +46,15 @@ export class AssociateComponent implements OnInit {
     //This introduced for the snapshot error.
     private route: ActivatedRoute,
     private router: Router,
-    private skillsService:SkillsService
+    private skillsService:SkillsService,
+    private changeDetectorRef:ChangeDetectorRef
     //Add services here
   ) { }
+
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
+  }
+
 
   ngOnInit() {
     this.getAllSkills();
@@ -102,8 +110,7 @@ setBlueStatus(){
  
 }
 
-setLevels(){
-
+setLevels(value){
 console.log("Inside levels");
   
 }
