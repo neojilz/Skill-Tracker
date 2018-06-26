@@ -38,7 +38,9 @@ private List<Associate> associate;*/
 
 
 @OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="asEid.skills",orphanRemoval=true)
-private Set<AssociateSkills> associateSkills = new HashSet<AssociateSkills>();
+private Set<AssociateSkills> associateSkills = new HashSet<AssociateSkills>(0);
+
+
 
 
 public int getSkill_id() {

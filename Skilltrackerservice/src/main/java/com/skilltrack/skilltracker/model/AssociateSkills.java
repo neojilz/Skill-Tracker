@@ -16,7 +16,8 @@ public class AssociateSkills {
 	private int skill_value;
 
 	@EmbeddedId
-	private AssociateSkillsEmbeddableId asEid;
+	private AssociateSkillsEmbeddableId asEid = new AssociateSkillsEmbeddableId();
+	private int skillLevel;
 
 	/*
 	 * @Column private int associate_id;
@@ -68,6 +69,53 @@ public class AssociateSkills {
 	public void setSkillId(int skill_id) {
 		this.asEid.getSkills().setSkill_id(skill_id);;
 	}
-	
 
+	/**
+	 * @return the asEid
+	 */
+	public AssociateSkillsEmbeddableId getAsEid() {
+		return asEid;
+	}
+
+	/**
+	 * @param asEid the asEid to set
+	 */
+	public void setAsEid(AssociateSkillsEmbeddableId asEid) {
+		this.asEid = asEid;
+	}
+	
+	
+	
+	public Skills getSkills() {
+		return getAsEid().getSkills();
+	}
+
+	public void setSkills(Skills skills) {
+		getAsEid().setSkills(skills);
+	}
+
+	
+	public Associate getAssociates() {
+		return getAsEid().getAssociate();
+	}
+
+	public void setAssociates(Associate associates) {
+		getAsEid().setAssociate(associates);
+	}
+	/**
+	 * @return the skillLevel
+	 */
+	public int getSkillLevel() {
+		return skillLevel;
+	}
+
+	/**
+	 * @param skillLevel the skillLevel to set
+	 */
+	public void setSkillLevel(int skillLevel) {
+		this.skillLevel = skillLevel;
+	}
+
+	
+	
 }

@@ -11,10 +11,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.skilltrack.skilltracker.model.Skills;
 import com.skilltrack.skilltracker.repo.SkillsRepository;
+import com.skilltrack.skilltracker.req.Response;
 import com.skilltrack.skilltracker.req.SkillRequest;
 
 @RunWith(SpringRunner.class)
@@ -45,8 +47,8 @@ public class SkillServiceImplTest {
 	@Test
 	public void testSaveSkills(){
 		Mockito.when(skillRepository.save(Mockito.any(Skills.class))).thenReturn(skills);
-		String response = skillService.saveSkills(skillReq);
-		assertEquals("success", response);
+		ResponseEntity<Response> response = skillService.saveSkill(skillReq);
+		assertEquals(500, response.getStatusCode());
 	}
 	
 	
