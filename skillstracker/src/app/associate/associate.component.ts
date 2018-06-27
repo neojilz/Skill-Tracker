@@ -20,27 +20,7 @@ export class AssociateComponent implements OnInit {
   level:String ="";
   status:String = "";
   skillList:Skill[];
-  
-  // associateForm =  new FormGroup({
-  //   name: new FormControl('Hello',Validators.required),
-  //   associateId: new FormControl('',Validators.required),
-  //   email: new FormControl('',Validators.required),
-  //   mobile: new FormControl('',Validators.required),
-  //   status_green: new FormControl('',Validators.required),
-  //   status_red: new FormControl('',Validators.required),
-  //   status_blue: new FormControl('',Validators.required),
-  //   level1:new FormControl('',Validators.required),
-  //   level2:new FormControl('',Validators.required),
-  //   level3:new FormControl('',Validators.required),
-  //   gender:new FormControl('',Validators.required),
-  //   remark:new FormControl('',Validators.required),
-  //   strength:new FormControl('',Validators.required),
-  //   weakness:new FormControl('',Validators.required),
-  //   // skillsArray:new FormControl('',Validators.required),
-  //   // skillsList:new FormControl('',Validators.required),
-  //  skillsList:new FormGroup({skillForm: new FormControl('',Validators.required)}),
-    
-  // })
+
 
   constructor(
     //This introduced for the snapshot error.
@@ -96,24 +76,90 @@ sliderChange(value: any, skill: Skill) {
     skill.skill_level = value;
   }
 
-
-setRedStatus(){
-  
-  
-}
-
-setGreenStatus(){
- 
-}
-
-setBlueStatus(){
- 
-}
+  setStatus(value){
+    console.log("Inside status with status value" + value);
+    switch (value){
+    case 1 : 
+      console.log(value+"chosen");
+      this.associate.status_green = true;
+      this.associate.status_blue = false;
+      this.associate.status_red = false; 
+      break;
+    
+    case 2 : 
+      console.log(value+"chosen");
+      this.associate.status_green = false;
+      this.associate.status_red = true;
+      this.associate.status_blue = false; 
+      break;
+    
+    case 3 : 
+      console.log(value+"chosen");
+      this.associate.status_green = false;
+      this.associate.status_red = false;
+      this.associate.status_blue = true; 
+      break;
+    
+    default : {
+      console.log("Default level reached");
+    }
+    
+    
+    }
+      
+    }
 
 setLevels(value){
-console.log("Inside levels");
-  
+console.log("Inside levels with level value" + value);
+switch (value){
+case 1 : 
+  console.log(value+"chosen");
+  this.associate.level1 = true;
+  this.associate.level2 = false;
+  this.associate.level3 = false; 
+  break;
+
+case 2 : 
+  console.log(value+"chosen");
+  this.associate.level1 = false;
+  this.associate.level2 = true;
+  this.associate.level3 = false; 
+  break;
+
+case 3 : 
+  console.log(value+"chosen");
+  this.associate.level1 = false;
+  this.associate.level2 = false;
+  this.associate.level3 = true; 
+  break;
+
+default : {
+  console.log("Default level reached");
 }
 
+
+}
+  
+}
+setGender(value){
+  console.log("Inside gender with gender value" + value);
+  switch (value){
+  case 'M' : 
+    console.log(value+" chosen");
+    this.associate.gender = 'M';
+    break;
+  
+  case 'F' : 
+    console.log(value+" chosen");
+    this.associate.gender = 'F'; 
+    break;
+  
+  default : {
+    console.log("Default gender reached");
+  }
+  
+  
+  }
+}
 
 }
