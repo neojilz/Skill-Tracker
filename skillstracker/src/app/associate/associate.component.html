@@ -7,11 +7,11 @@
           <div class="col-md-5">
             <div class="form-group row">
               <label for="name" class="col-md-4 col-md-offset-2">Name:</label>
-              <input name="name" type="text" class="form-control col-md-6" [(ngModel)]="associate.name">
+              <input name="name" class="form-control col-md-6" [(ngModel)]="associate.name">
             </div>
-            <div class="form-group row">
+            <div class="form-group row"  *ngIf="header==='update'">
               <label for="associateId" class="col-md-4 col-md-offset-2 col-form-label">Associate ID:</label>
-              <input name="associateId" class="form-control col-md-6" [(ngModel)]="associate.id">
+              <input name="associateId" class="form-control col-md-6" [(ngModel)]="associate.associateId">
             </div>
             <div class="form-group row">
               <label for="email" class="col-md-4 col-md-offset-2 col-form-label">Email ID:</label>
@@ -29,28 +29,28 @@
             </div>
           </div>
           <div class="col-md-1">
-              <div class="row btn-group btn-group-vertical" data-toggle="buttons">
-                <label class="btn btn-success active" (click)="setStatus(1)">
-                  <input name="status" type="radio" id="status1" >G
-                </label>
-                <label class="btn btn-danger" (click)="setStatus(2)">
-                  <input name="status" type="radio" id="status2">R
-                </label>
-                <label class="btn btn-primary"(click)="setStatus(3)">
-                  <input name="status" type="radio" id="status3" >B
-                </label>
-              </div>
+            <div class="row btn-group btn-group-vertical" data-toggle="buttons">
+              <label class="btn btn-success active" (click)="setStatus(1)">
+                <input name="status" type="radio" id="status1">G
+              </label>
+              <label class="btn btn-danger" (click)="setStatus(2)">
+                <input name="status" type="radio" id="status2">R
+              </label>
+              <label class="btn btn-primary" (click)="setStatus(3)">
+                <input name="status" type="radio" id="status3">B
+              </label>
             </div>
+          </div>
           <div class="col-md-1">
             <div class="row btn-group btn-group-vertical" data-toggle="buttons">
               <label class="btn btn-secondary active" (click)="setLevels(1)">
-                <input name="level" type="radio" id="option1" >L1
+                <input name="level" type="radio" id="option1">L1
               </label>
-              <label class="btn btn-secondary" (click)="setLevels(2)"> 
-                <input name="level" type="radio" id="option2" >L2
+              <label class="btn btn-secondary" (click)="setLevels(2)">
+                <input name="level" type="radio" id="option2">L2
               </label>
               <label class="btn btn-secondary" (click)="setLevels(3)">
-                <input name="level" type="radio" id="option3" >L3
+                <input name="level" type="radio" id="option3">L3
               </label>
             </div>
           </div>
@@ -65,7 +65,7 @@
             </div>
             <div row>
               <label for="remark" class="col-md-4 col-md-offset-2 col-form-label">Remarks:</label>
-              <textarea name="remark" class="form-control col-md-12" rows="5"></textarea>
+              <textarea name="remark" class="form-control col-md-12" rows="5"  [(ngModel)]="associate.remark"></textarea>
             </div>
           </div>
         </div>
@@ -79,20 +79,67 @@
             <label>{{skill.skill_level}}</label>
           </div>
         </div>
-        <hr/> Additional Skills goes here.
-
+        <hr/>
+        <div class="form-group row">
+          <label for="skills" class="col-md-12">Additional Skills</label>
+          <div class="col-md-4" name="spokenLevel">
+            <label class="col-md-4">Spoken</label>
+            <input type="range" min="0" max="20" class="col-md-6 slider" name="spokenLevel" id="myRange" (input)="adSkillsliderChange($event.target.value,'spokenLevel')">
+            <label>{{associate.spokenLevel}} </label>
+          </div>
+          <div class="col-md-4" name="communicationLevel">
+            <label class="col-md-4">Communicaction</label>
+            <input type="range" min="0" max="20" class="col-md-6 slider" name="communicationLevel" id="myRange" (input)="adSkillsliderChange($event.target.value,'communicationLevel')">
+            <label>{{associate.communicationLevel}} </label>
+          </div>
+          <div class="col-md-4" name="logicLevel">
+            <label class="col-md-4">Logic</label>
+            <input type="range" min="0" max="20" class="col-md-6 slider" name="logicLevel" id="myRange" (input)="adSkillsliderChange($event.target.value,'logicLevel')">
+            <label>{{associate.logicLevel}} </label>
+          </div>
+          <div class="col-md-4" name="aptitudeLevel">
+            <label class="col-md-4">Aptitude</label>
+            <input type="range" min="0" max="20" class="col-md-6 slider" name="aptitudeLevel" id="myRange" (input)="adSkillsliderChange($event.target.value,'aptitudeLevel')">
+            <label>{{associate.aptitudeLevel}} </label>
+          </div>
+          <div class="col-md-4" name="confidenceLevel">
+            <label class="col-md-4">Confidence</label>
+            <input type="range" min="0" max="20" class="col-md-6 slider" name="confidenceLevel" id="myRange" (input)="adSkillsliderChange($event.target.value,'confidenceLevel')">
+            <label>{{associate.confidenceLevel}} </label>
+          </div>
+        </div>
+        <hr/>
+        <div class="form-group row">
+        <label for="Misc" class="col-md-12">Miscellaneous Skills</label>
+        <div class="col-md-4" name="strength">
+          <label class="col-md-4">Strength</label>
+          <input type="text" name="strength" class="col-md-6" [(ngModel)]="associate.strength">
+        </div>
+        <div class="col-md-4" name="weakness">
+          <label class="col-md-4">Weakness</label>
+          <input type="text" class="col-md-6" name="weakness" [(ngModel)]="associate.weakness">
+        </div>
+        <!-- <div class="col-md-4" name="strongskills">
+          <label class="col-md-6">Strong Skills</label>
+          <input type="text" class="col-md-4" name="strong" [(ngModel)]="associate.strongSkills">
+        </div> -->
+      </div>
         <hr/>
         <div class="form-group row">
           <div class="col-md-6 offset-md-6">
             <div class="form-group row col-md-12" *ngIf="header==='create'">
               <input name="reset" id="resetId" class="col-md-3  btn btn-secondary " type="button" (click)="onAssociateFormClear()" value="RESET">
-              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" (click)= "onAssociateFormClear()" type="button" value="CANCEL">
-              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" (click)="onAssociateFormSubmit()" type="submit" value="SAVE">
+              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" (click)="onAssociateFormClear()" type="button"
+                value="CANCEL">
+              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" (click)="onAssociateFormSubmit()" type="submit"
+                value="SAVE">
             </div>
             <div class="form-group row col-md-12" *ngIf="header==='update'">
               <input name="delete" id="deleteId" class="col-md-3  btn btn-secondary " (click)="onAssociateFormClear()" type="button" value="DELETE">
-              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" (click)= "onAssociateFormClear()" type="button" value="CANCEL">
-              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" (click)="onAssociateFormSubmit()" type="button" value="UPDATE">
+              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" (click)="onAssociateFormClear()" type="button"
+                value="CANCEL">
+              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" (click)="onAssociateFormUpdateSubmit()" type="submit"
+                value="UPDATE">
             </div>
           </div>
         </div>

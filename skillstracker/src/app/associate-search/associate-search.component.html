@@ -29,8 +29,8 @@
     </div>
   </div>
   <div class="row display-row">
-    <div class="col-md-6 col-sm-6 summarycolumn">
-      <div class="col-md-3 col-sm-3  summary">
+    <!-- <div class="col-md-6 col-sm-6 summarycolumn"> -->
+      <div class="col-md-2 col-sm-3  summary">
         <div class="col-md-12 col-sm-12  well summary-element">
           <span>
             <strong>{{totalNumberOfEmp}}</strong>
@@ -39,7 +39,7 @@
           </span>
         </div>
       </div>
-      <div class="col-md-3 col-sm-3  summary">
+      <div class="col-md-2 col-sm-3  summary">
         <div class="col-md-12 col-sm-12  well summary-element ">
           <span>
             <strong>{{percOfFemaleEmp}}%</strong>
@@ -48,7 +48,7 @@
           </span>
         </div>
       </div>
-      <div class="col-md-3 col-sm-3  summary">
+      <div class="col-md-2 col-sm-3  summary">
         <div class="col-md-12 col-sm-12  well summary-element">
           <span>
             <strong>{{percOfMaleEmp}}%</strong>
@@ -57,7 +57,7 @@
           </span>
         </div>
       </div>
-      <div class="col-md-3 col-sm-3  summary">
+      <div class="col-md-2 col-sm-3  summary">
         <div class="col-md-12 col-sm-12  well summary-element">
           <span>
             <strong>{{percOfFreshers}}%</strong>
@@ -66,8 +66,8 @@
           </span>
         </div>
       </div>
-    </div>
-    <div class="col-md-6 col-sm-6 summarycolumn">
+    <!-- </div>
+    <div class="col-md-6 col-sm-6 summarycolumn"> -->
       <div class="col-md-3 col-sm-3  summary">
         <div class="col-md-12 col-sm-12  well summary-element">
           <span>
@@ -104,7 +104,7 @@
           </span>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
   <div class="row display-row">
     <div class="col-md-6 col-sm-6 col-xs-12 headers">
@@ -135,7 +135,7 @@
           <input type="text" id="strongSkillText" [(ngModel)]="strongSkillText" placeholder="Search By Strong Skills..">
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6 headers secondRow2">
-          <button type="button" class="btn btn-success" [routerLink]="['/add-employee']">Add Employee</button>
+          <button type="button" class="btn btn-success" [routerLink]="['/addemployee']">Add Employee</button>
         </div>
       </div>
     </div>
@@ -197,9 +197,9 @@
             </div>
           </div>
           <div class="col-md-3 col-sm-3 col-xs-12 headers">
-            <button type="button" class="btn btn-success btn-row editAction" [routerLink]="['/edit',employee.associateId]">Edit</button>
+            <button type="button" class="btn btn-success btn-row editAction" [routerLink]="['/editemployee',employee.associateId]">Edit</button>
             <button type="button" class="btn btn-danger btn-row editAction" (click)="delete(employee)">Delete</button>
-            <button type="button" class="btn btn-default btn-row editAction" [routerLink]="['/view',employee.associateId]">View</button>
+            <button type="button" class="btn btn-default btn-row editAction" [routerLink]="['/viewemployee',employee.associateId]">View</button>
           </div>
         </div>
       </div>

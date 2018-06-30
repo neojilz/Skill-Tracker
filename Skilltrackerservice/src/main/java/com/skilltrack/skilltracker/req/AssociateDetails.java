@@ -35,7 +35,7 @@ public class AssociateDetails {
 
 	private int spokenLevel;
 	
-	private int communicactionLevel;
+	private int communicationLevel;
 	
 	private int logicLevel;
 	
@@ -182,12 +182,14 @@ public class AssociateDetails {
 		this.spokenLevel = spokenLevel;
 	}
 
-	public int getCommunicactionLevel() {
-		return communicactionLevel;
+
+
+	public int getCommunicationLevel() {
+		return communicationLevel;
 	}
 
-	public void setCommunicactionLevel(int communicactionLevel) {
-		this.communicactionLevel = communicactionLevel;
+	public void setCommunicationLevel(int communicationLevel) {
+		this.communicationLevel = communicationLevel;
 	}
 
 	public int getLogicLevel() {

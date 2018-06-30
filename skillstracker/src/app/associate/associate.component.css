@@ -46,3 +46,8 @@
     background: #4CAF50;
     cursor: pointer;
 }
+img{
+    width:105px;
+    height: 115px;
+    border: solid;
+}

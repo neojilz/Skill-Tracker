@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Associate} from '../models/associate';
+import { Associate } from '../models/associate';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SkillsService } from '../services/skills.service';
+import { EmployeeService } from '../services/employee.service';
 import { Skill } from '../models/skill';
 import { ChangeDetectorRef } from '@angular/core';
 // import {MatSliderModule} from '@angular/material/slider';
@@ -13,21 +14,25 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class AssociateComponent implements OnInit {
 
-  associate:Associate;
-  page:String;
-  associateId:String;
-  header:String;
-  level:String ="";
-  status:String = "";
-  skillList:Skill[];
+  associate: Associate = new Associate();
+  page: String;
+  associateId: string;
+  header: String;
+  level: String = "";
+  status: String = "";
+  skillList: Skill[];
+  selectedFile: File;
+  imageUrl: string = "/assets/images/placeholder_img.png";
+  temp:any;
 
 
   constructor(
     //This introduced for the snapshot error.
     private route: ActivatedRoute,
     private router: Router,
-    private skillsService:SkillsService,
-    private changeDetectorRef:ChangeDetectorRef
+    private skillsService: SkillsService,
+    private employeeService: EmployeeService,
+    private changeDetectorRef: ChangeDetectorRef
     //Add services here
   ) { }
 
@@ -40,131 +45,226 @@ export class AssociateComponent implements OnInit {
     this.getAllSkills();
     this.associateId = this.route.snapshot.paramMap.get('associateId');
     this.page = this.route.snapshot.data.page;
-    if(this.page === "editassociate"){
-      this.header ="update";
-      this.saveEmployee();
+    if (this.page === "editassociate") {
+      this.header = "update";
+      var associateId = parseInt(this.associateId);
+      this.populateAssociateDetails(associateId);
+      // this.saveEmployee();
     }
     else if (this.page === "createassociate") {
       console.log("Creating Associate");
-      this.header ="create";
+      this.header = "create";
       console.log(this.skillList);
       this.associate = new Associate();
-      // this.associateForm.setValue({
-      //    skillList:this.skillList
-      //  });
+
     }
-    
+
 
   }
+  populateAssociateDetails(associateId: number) {
+    this.employeeService.getEmployeeById(associateId).subscribe(
+      data => { 
+        this.temp =data;
+        this.associate = this.temp;
+        this.skillList =  this.associate.skills;
+        this.imageUrl = "data:image/png;base64," + this.associate.pic;
+        this.editcallback();
+      },
+      error => { },
+      () => {
+       
+       }
+    );
+  }
+  editcallback(){
+    if(this.associate.level1=true){
 
-  onAssociateFormSubmit(){
+    }
+  }
+
+  onAssociateFormSubmit() {
     console.log("Inside save");
     console.log(this.associate);
+    this.saveEmployee();
   }
-  onAssociateFormClear(){
+  onAssociateFormClear() {
     console.log("Inside clear");
-    this.associate =new Associate();
+    this.associate = new Associate();
   }
 
-  saveEmployee(){
-
+  onAssociateFormUpdateSubmit() {
+    console.log("Inside update");
+    console.log(this.associate);
+    this.setImage();
+    this.saveEmployee();
   }
 
-  getAllSkills(){
+  
+
+  saveEmployee() {
+    this.associate.skills = this.skillList;
+    this.employeeService.saveEmployee(this.associate, this.selectedFile).subscribe(
+      message => {
+        if (message.message == "Success")
+          this.router.navigate(["/searchassociate"])
+      }
+    );
+  }
+
+  getAllSkills() {
     this.skillsService.getSkills().subscribe(
 
-     data => { console.log("getting skills"); this.skillList = data }
+      data => { console.log("getting skills"); this.skillList = data }
     )
   }
 
-sliderChange(value: any, skill: Skill) {
+
+  setImage() {
+    if (this.selectedFile == undefined) {
+      let arr = this.imageUrl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      this.selectedFile = new File([u8arr], "Filename.png", { type: mime });
+    }
+  }
+
+  sliderChange(value: any, skill: Skill) {
     skill.skill_level = value;
   }
 
-  setStatus(value){
+
+  adSkillsliderChange(value: number, type: string) {
+    console.log("Inside the Additional skill Slider");
+    switch (type) {
+      case 'spokenLevel':
+        console.log(value + "spokenLevel");
+        this.associate.spokenLevel = value;
+        break;
+
+      case 'communicationLevel':
+        console.log(value + "communicationLevel");
+        this.associate.communicationLevel = value;
+        break;
+
+      case 'logicLevel':
+        console.log(value + "logicLevel");
+        this.associate.logicLevel = value;
+        break;
+
+      case 'aptitudeLevel':
+        console.log(value + "aptitudeLevel");
+        this.associate.aptitudeLevel = value;
+        break;
+
+      case 'confidenceLevel':
+        console.log(value + "confidenceLevel");
+        this.associate.confidenceLevel = value;
+        break;
+
+
+      default: {
+        console.log("Default level reached");
+      }
+
+
+    }
+  }
+  setStatus(value) {
     console.log("Inside status with status value" + value);
-    switch (value){
-    case 1 : 
-      console.log(value+"chosen");
-      this.associate.status_green = true;
-      this.associate.status_blue = false;
-      this.associate.status_red = false; 
-      break;
-    
-    case 2 : 
-      console.log(value+"chosen");
-      this.associate.status_green = false;
-      this.associate.status_red = true;
-      this.associate.status_blue = false; 
-      break;
-    
-    case 3 : 
-      console.log(value+"chosen");
-      this.associate.status_green = false;
-      this.associate.status_red = false;
-      this.associate.status_blue = true; 
-      break;
-    
-    default : {
-      console.log("Default level reached");
-    }
-    
-    
-    }
-      
+    switch (value) {
+      case 1:
+        console.log(value + "chosen");
+        this.associate.statusGreen = true;
+        this.associate.statusBlue = false;
+        this.associate.statusRed = false;
+        break;
+
+      case 2:
+        console.log(value + "chosen");
+        this.associate.statusGreen = false;
+        this.associate.statusRed = true;
+        this.associate.statusBlue = false;
+        break;
+
+      case 3:
+        console.log(value + "chosen");
+        this.associate.statusGreen = false;
+        this.associate.statusRed = false;
+        this.associate.statusBlue = true;
+        break;
+
+      default: {
+        console.log("Default level reached");
+      }
+
+
     }
 
-setLevels(value){
-console.log("Inside levels with level value" + value);
-switch (value){
-case 1 : 
-  console.log(value+"chosen");
-  this.associate.level1 = true;
-  this.associate.level2 = false;
-  this.associate.level3 = false; 
-  break;
-
-case 2 : 
-  console.log(value+"chosen");
-  this.associate.level1 = false;
-  this.associate.level2 = true;
-  this.associate.level3 = false; 
-  break;
-
-case 3 : 
-  console.log(value+"chosen");
-  this.associate.level1 = false;
-  this.associate.level2 = false;
-  this.associate.level3 = true; 
-  break;
-
-default : {
-  console.log("Default level reached");
-}
-
-
-}
-  
-}
-setGender(value){
-  console.log("Inside gender with gender value" + value);
-  switch (value){
-  case 'M' : 
-    console.log(value+" chosen");
-    this.associate.gender = 'M';
-    break;
-  
-  case 'F' : 
-    console.log(value+" chosen");
-    this.associate.gender = 'F'; 
-    break;
-  
-  default : {
-    console.log("Default gender reached");
   }
-  
-  
+
+  setLevels(value) {
+    console.log("Inside levels with level value" + value);
+    switch (value) {
+      case 1:
+        console.log(value + "chosen");
+        this.associate.level1 = true;
+        this.associate.level2 = false;
+        this.associate.level3 = false;
+        break;
+
+      case 2:
+        console.log(value + "chosen");
+        this.associate.level1 = false;
+        this.associate.level2 = true;
+        this.associate.level3 = false;
+        break;
+
+      case 3:
+        console.log(value + "chosen");
+        this.associate.level1 = false;
+        this.associate.level2 = false;
+        this.associate.level3 = true;
+        break;
+
+      default: {
+        console.log("Default level reached");
+      }
+
+
+    }
+
   }
-}
+  setGender(value) {
+    console.log("Inside gender with gender value" + value);
+    switch (value) {
+      case 'M':
+        console.log(value + " chosen");
+        this.associate.gender = 'M';
+        break;
+
+      case 'F':
+        console.log(value + " chosen");
+        this.associate.gender = 'F';
+        break;
+
+      default: {
+        console.log("Default gender reached");
+      }
+
+
+    }
+  }
+
+  handleFileInput(file: FileList) {
+    this.selectedFile = file[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    }
+
+  }
 
 }

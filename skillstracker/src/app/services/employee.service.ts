@@ -17,8 +17,8 @@ export class EmployeeService {
   
   _addEmployee = SERVICE_URI+"/save";
   _getAllEmp = SERVICE_URI+"/getall"
-  _getAssociateById = SERVICE_URI+"/getassociate"; 
-  _deleteEmployee = SERVICE_URI+"/delete";
+  _getAssociateById = SERVICE_URI+"/getassociate/"; 
+  _deleteEmployee = SERVICE_URI+"/delete/";
 
   getAllEmployees(): Observable<Associate[]> {
     return this.http.get(this._getAllEmp).map(this.extractData)

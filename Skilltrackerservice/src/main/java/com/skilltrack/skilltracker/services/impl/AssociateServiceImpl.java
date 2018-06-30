@@ -38,7 +38,6 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 	@Autowired
 	AssociateRepository repository;
 
-	@Override
 	@Cacheable("associates")
 	public ResponseEntity<List<AssociateDetails>> getAllAssociates() {
 		List<AssociateDetails> associateList = new ArrayList<>();
@@ -63,7 +62,7 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 					details.setStrength(associateTable.getStrength());
 					details.setWeakness(associateTable.getWeakness());
 					details.setAptitudeLevel(associateTable.getAptitudeLevel());
-					details.setCommunicactionLevel(associateTable.getCommunicactionLevel());
+					details.setCommunicationLevel(associateTable.getCommunicactionLevel());
 					details.setConfidenceLevel(associateTable.getConfidenceLevel());
 					details.setLogicLevel(associateTable.getLogicLevel());
 					details.setSpokenLevel(associateTable.getSpokenLevel());
@@ -84,11 +83,11 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 				return new ResponseEntity<List<AssociateDetails>>(associateList, HttpStatus.NO_CONTENT);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<List<AssociateDetails>>(associateList, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	@Override
 	@CacheEvict(cacheNames = "associates", allEntries = true)
 	public ResponseEntity<Response> saveAssociate(MultipartFile file, String associateDetailString) {
 		Associate associateTable = new Associate();
@@ -115,7 +114,7 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 				associateTable.setStrength(associateDetails.getStrength());
 				associateTable.setWeakness(associateDetails.getWeakness());
 				associateTable.setAptitudeLevel(associateDetails.getAptitudeLevel());
-				associateTable.setCommunicactionLevel(associateDetails.getCommunicactionLevel());
+				associateTable.setCommunicactionLevel(associateDetails.getCommunicationLevel());
 				associateTable.setConfidenceLevel(associateDetails.getConfidenceLevel());
 				associateTable.setLogicLevel(associateDetails.getLogicLevel());
 				associateTable.setSpokenLevel(associateDetails.getSpokenLevel());
@@ -139,11 +138,11 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 				return new ResponseEntity<Response>(new Response("Insufficient data"), HttpStatus.BAD_REQUEST);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<Response>(new Response("Failed"), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	@Override
 	@Cacheable(value = "associates", key = "#id")
 	public ResponseEntity<AssociateDetails> getAssociateById(String id) {
 		AssociateDetails details = new AssociateDetails();
@@ -168,7 +167,7 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 				details.setStrength(associateTable.getStrength());
 				details.setWeakness(associateTable.getWeakness());
 				details.setAptitudeLevel(associateTable.getAptitudeLevel());
-				details.setCommunicactionLevel(associateTable.getCommunicactionLevel());
+				details.setCommunicationLevel(associateTable.getCommunicactionLevel());
 				details.setConfidenceLevel(associateTable.getConfidenceLevel());
 				details.setLogicLevel(associateTable.getLogicLevel());
 				details.setSpokenLevel(associateTable.getSpokenLevel());
@@ -186,11 +185,11 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 				return new ResponseEntity<AssociateDetails>(details, HttpStatus.BAD_REQUEST);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<AssociateDetails>(details, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	@Override
 	@CacheEvict(cacheNames = "associates", allEntries = true)
 	public ResponseEntity<Response> deleteAssociate(AssociateDetails associateDetails) {
 		Associate associateTable = new Associate();
@@ -212,7 +211,7 @@ public class AssociateServiceImpl implements AssociateServicesInt {
 				associateTable.setStrength(associateDetails.getStrength());
 				associateTable.setWeakness(associateDetails.getWeakness());
 				associateTable.setAptitudeLevel(associateDetails.getAptitudeLevel());
-				associateTable.setCommunicactionLevel(associateDetails.getCommunicactionLevel());
+				associateTable.setCommunicactionLevel(associateDetails.getCommunicationLevel());
 				associateTable.setConfidenceLevel(associateDetails.getConfidenceLevel());
 				associateTable.setLogicLevel(associateDetails.getLogicLevel());
 				associateTable.setSpokenLevel(associateDetails.getSpokenLevel());

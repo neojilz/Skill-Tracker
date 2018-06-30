@@ -1,8 +1,6 @@
 package com.skilltrack.skilltracker.model;
 
-import java.sql.Blob;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,9 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,7 +26,7 @@ public class Associate {
 	private String email;
 	@Column
 	private String mobile;
-	@Column
+	@Column(length=100000)
 	private byte[] pic;
 	@Column
 	private boolean status_green;
@@ -212,7 +207,7 @@ private int spokenLevel;
 	}
 
 	public void setAssociateSkills(Set<AssociateSkills> associateSkillsTableList) {
-		this.associateSkills = associateSkills;
+		this.associateSkills = associateSkillsTableList;
 	}
 
 	/**

@@ -10,6 +10,7 @@ import { AssociateSearchComponent } from './associate-search/associate-search.co
 import { AddSkillsComponent } from './add-skills/add-skills.component';
 
 import {SkillsService } from './services/skills.service';
+import {EmployeeService} from './services/employee.service' ;
 import { AssociateComponent } from './associate/associate.component';
 import { AssociateEmailPipe } from './pipes/associate-email.pipe';
 import { AssociateIdPipe } from './pipes/associate-id.pipe';
@@ -39,7 +40,7 @@ import { SkillPipe } from './pipes/skill.pipe';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [SkillsService],
+  providers: [SkillsService,EmployeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
