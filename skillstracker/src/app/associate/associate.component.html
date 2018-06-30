@@ -85,14 +85,14 @@
         <div class="form-group row">
           <div class="col-md-6 offset-md-6">
             <div class="form-group row col-md-12" *ngIf="header==='create'">
-              <input name="reset" id="resetId" class="col-md-3  btn btn-secondary " type="button" value="RESET">
-              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" type="button" value="CANCEL">
-              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" type="submit" value="SAVE">
+              <input name="reset" id="resetId" class="col-md-3  btn btn-secondary " type="button" (click)="onAssociateFormClear()" value="RESET">
+              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" (click)= "onAssociateFormClear()" type="button" value="CANCEL">
+              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" (click)="onAssociateFormSubmit()" type="submit" value="SAVE">
             </div>
             <div class="form-group row col-md-12" *ngIf="header==='update'">
-              <input name="delete" id="deleteId" class="col-md-3  btn btn-secondary " type="button" value="DELETE">
-              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" type="button" value="CANCEL">
-              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" type="button" value="UPDATE">
+              <input name="delete" id="deleteId" class="col-md-3  btn btn-secondary " (click)="onAssociateFormClear()" type="button" value="DELETE">
+              <input name="cancel" id="cancelId" class="col-md-3 offset-md-1 btn btn-secondary" (click)= "onAssociateFormClear()" type="button" value="CANCEL">
+              <input name="save" id="saveId" class="col-md-3  offset-md-1 btn btn-primary" (click)="onAssociateFormSubmit()" type="button" value="UPDATE">
             </div>
           </div>
         </div>

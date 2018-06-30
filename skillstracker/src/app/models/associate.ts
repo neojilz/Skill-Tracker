@@ -18,4 +18,10 @@ export class Associate{
     strength:String;
     weakness:String;
     skills:Skill[];
+    spokenLevel : number=0;
+	communicactionLevel: number=0;
+	logicLevel: number=0;
+	aptitudeLevel: number=0;
+    confidenceLevel: number=0;
+    strongSkills: string;
 }

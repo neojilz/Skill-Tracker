@@ -58,7 +58,12 @@ export class AssociateComponent implements OnInit {
   }
 
   onAssociateFormSubmit(){
-
+    console.log("Inside save");
+    console.log(this.associate);
+  }
+  onAssociateFormClear(){
+    console.log("Inside clear");
+    this.associate =new Associate();
   }
 
   saveEmployee(){

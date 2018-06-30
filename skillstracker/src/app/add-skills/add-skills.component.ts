@@ -8,7 +8,7 @@ import {SkillsService} from '../services/skills.service';
 })
 export class AddSkillsComponent implements OnInit {
 
-  newSkillName:String;
+  newSkillName:string;
   skill:Skill;
   editedSkillId:number;
   editText:String = "Edit";

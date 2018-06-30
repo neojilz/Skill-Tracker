@@ -26,14 +26,14 @@ public class AssociateController {
 	@Autowired
 	AssociateServicesInt associateService;
 
-	@RequestMapping(value = "/associates/getall", method = RequestMethod.GET)
+	@RequestMapping(value = "/getall", method = RequestMethod.GET)
 	public ResponseEntity<List<AssociateDetails>> getAllAssociates() {
 
 		return associateService.getAllAssociates();
 
 	}
 
-	@RequestMapping(value = "/associates/save", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Response> saveAssociate(@RequestParam("file") MultipartFile file,@RequestParam("associateDetails") String associateDet ) {
 		
 		return associateService.saveAssociate(file,associateDet);
@@ -42,14 +42,14 @@ public class AssociateController {
 	
 	
 
-	@RequestMapping(value = "/associates/getasociate/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getassociate/{id}", method = RequestMethod.GET)
 	public ResponseEntity<AssociateDetails> getAssociateById(@PathVariable String id) {
 
 		return associateService.getAssociateById(id);
 
 	}
 
-	@RequestMapping(value = "/associates/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public ResponseEntity<Response> deleteAssociate(@RequestBody AssociateDetails associateDetails) {
 
 		return associateService.deleteAssociate(associateDetails);

@@ -11,6 +11,12 @@ import { AddSkillsComponent } from './add-skills/add-skills.component';
 
 import {SkillsService } from './services/skills.service';
 import { AssociateComponent } from './associate/associate.component';
+import { AssociateEmailPipe } from './pipes/associate-email.pipe';
+import { AssociateIdPipe } from './pipes/associate-id.pipe';
+import { AssociateNamePipe } from './pipes/associate-name.pipe';
+import { AssociatePhonePipe } from './pipes/associate-phone.pipe';
+import { AssociateSkillPipe } from './pipes/associate-skill.pipe';
+import { SkillPipe } from './pipes/skill.pipe';
 
 
 @NgModule({
@@ -19,6 +25,12 @@ import { AssociateComponent } from './associate/associate.component';
     AssociateSearchComponent,
     AddSkillsComponent,
     AssociateComponent,
+    AssociateEmailPipe,
+    AssociateIdPipe,
+    AssociateNamePipe,
+    AssociatePhonePipe,
+    AssociateSkillPipe,
+    SkillPipe,
   ],
   imports: [
     BrowserModule,
