@@ -24,6 +24,8 @@ export class AssociateComponent implements OnInit {
   selectedFile: File;
   imageUrl: string = "/assets/images/placeholder_img.png";
   temp:any;
+  status_blue:boolean;status_red:boolean;status_green:boolean;
+  viewOnly:boolean = false;
 
 
   constructor(
@@ -57,6 +59,11 @@ export class AssociateComponent implements OnInit {
       console.log(this.skillList);
       this.associate = new Associate();
 
+    }else if(this.page === "viewassociate"){
+      this.header = "update";
+      var associateId = parseInt(this.associateId);
+      this.populateAssociateDetails(associateId);
+      this.viewOnly = true;
     }
 
 
@@ -68,7 +75,7 @@ export class AssociateComponent implements OnInit {
         this.associate = this.temp;
         this.skillList =  this.associate.skills;
         this.imageUrl = "data:image/png;base64," + this.associate.pic;
-        this.editcallback();
+        // this.editcallback();
       },
       error => { },
       () => {
@@ -76,11 +83,8 @@ export class AssociateComponent implements OnInit {
        }
     );
   }
-  editcallback(){
-    if(this.associate.level1=true){
-
-    }
-  }
+ 
+ 
 
   onAssociateFormSubmit() {
     console.log("Inside save");
@@ -201,6 +205,10 @@ export class AssociateComponent implements OnInit {
 
 
     }
+
+  }
+//For edit flows
+setStatusOnEdit(status:number){
 
   }
 

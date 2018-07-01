@@ -8,9 +8,9 @@ import {AssociateComponent} from './associate/associate.component';
 const route:Routes =[
 {path:'searchassociate',component:AssociateSearchComponent},
 {path:'addskills',component:AddSkillsComponent},
-{path:'addemployee',component:AssociateComponent,data:{page:'createassociate'}},
-{path:'editemployee/:associateId',component:AssociateComponent,data:{page:'editassociate'}},
-{path:'viewemployee/:associateId',component:AssociateComponent,data:{page:'viewassociate'}},
+{path:'createassociate',component:AssociateComponent,data:{page:'createassociate'}},
+{path:'editassociate/:associateId',component:AssociateComponent,data:{page:'editassociate'}},
+{path:'viewassociate/:associateId',component:AssociateComponent,data:{page:'viewassociate'}},
 ];
 
 @NgModule({

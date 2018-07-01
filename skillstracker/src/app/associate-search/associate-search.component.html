@@ -135,7 +135,7 @@
           <input type="text" id="strongSkillText" [(ngModel)]="strongSkillText" placeholder="Search By Strong Skills..">
         </div>
         <div class="col-md-3 col-sm-3 col-xs-6 headers secondRow2">
-          <button type="button" class="btn btn-success" [routerLink]="['/addemployee']">Add Employee</button>
+          <button type="button" class="btn btn-success" [routerLink]="['/createassociate']">Add Employee</button>
         </div>
       </div>
     </div>
@@ -197,9 +197,9 @@
             </div>
           </div>
           <div class="col-md-3 col-sm-3 col-xs-12 headers">
-            <button type="button" class="btn btn-success btn-row editAction" [routerLink]="['/editemployee',employee.associateId]">Edit</button>
+            <button type="button" class="btn btn-success btn-row editAction" [routerLink]="['/editassociate',employee.associateId]">Edit</button>
             <button type="button" class="btn btn-danger btn-row editAction" (click)="delete(employee)">Delete</button>
-            <button type="button" class="btn btn-default btn-row editAction" [routerLink]="['/viewemployee',employee.associateId]">View</button>
+            <button type="button" class="btn btn-default btn-row editAction" [routerLink]="['/viewassociate',employee.associateId]">View</button>
           </div>
         </div>
       </div>
