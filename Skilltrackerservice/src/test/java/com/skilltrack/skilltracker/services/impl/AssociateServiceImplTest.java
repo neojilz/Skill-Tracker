@@ -42,7 +42,7 @@ public class AssociateServiceImplTest {
 	Associate table = new Associate();
 	List<Associate> associateLists = new ArrayList<Associate>();
 	
-	String associateDetailString = "{\"associateId\":3,\"name\":\"name\",\"email\":\"\",\"mobile\":\"1213546\",\"pic\":\"com.mysql.jdbc.Blob@23f5ff57\",\"statusGreen\":false,\"statusBlue\":true,\"statusRed\":false,\"level1\":true,\"level2\":false,\"level3\":false,\"remark\":\"\",\"strength\":\"\",\"weakness\":\"\",\"skills\":[{\"skillId\":1,\"skillName\":\"Skill\",\"skillLevel\":1}]}";
+	String associateDetailString = "{\"associateId\":3,\"name\":\"name\",\"email\":\"\",\"mobile\":\"1213546\",\"pic\":\"com.mysql.jdbc.Blob@23f5ff57\",\"statusGreen\":false,\"statusBlue\":true,\"statusRed\":false,\"level1\":true,\"level2\":false,\"level3\":false,\"remark\":\"\",\"strength\":\"\",\"weakness\":\"\",\"skills\":[{\"skill_id\":1,\"skill_name\":\"Skill\",\"skill_level\":1}]}";
 	
 	@Before
 	public void setup() {

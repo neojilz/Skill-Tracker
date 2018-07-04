@@ -37,8 +37,8 @@ public class AssociateControllerTest {
 	@MockBean
 	private AssociateServiceImpl service;
 	
-	 
 	String associateDetailString = "{\"associateId\":3,\"name\":\"name\",\"email\":\"\",\"mobile\":\"1213546\",\"pic\":\"com.mysql.jdbc.Blob@23f5ff57\",\"statusGreen\":false,\"statusBlue\":true,\"statusRed\":false,\"level1\":true,\"level2\":false,\"level3\":false,\"remark\":\"\",\"strength\":\"\",\"weakness\":\"\",\"skills\":[{\"skill_id\":1,\"skill_name\":\"Skill\",\"skill_level\":1}]}";
+	//String associateDetailString = "{\"associateId\":3,\"name\":\"name\",\"email\":\"\",\"mobile\":\"1213546\",\"pic\":\"com.mysql.jdbc.Blob@23f5ff57\",\"statusGreen\":false,\"statusBlue\":true,\"statusRed\":false,\"level1\":true,\"level2\":false,\"level3\":false,\"remark\":\"\",\"strength\":\"\",\"weakness\":\"\",\"skills\":[{\"skill_id\":1,\"skill_name\":\"Skill\",\"skill_level\":1}]}";
 	//String associateDetailString = "{\"associateId\":2,\"name\":\"Heyya\",\"email\":\"afasd@gmailc.comqa\",\"mobile\":\"132231\",\"gender\":\"F\",\"pic\":\"9VG4u7i5cG4nkkP\",\"statusGreen\":false,\"statusBlue\":false,\"statusRed\":true,\"level1\":false,\"level2\":false,\"level3\":true,\"remark\":\"123\",\"spokenLevel\":5,\"communicationLevel\":5,\"logicLevel\":0,\"aptitudeLevel\":6,\"confidenceLevel\":3,\"strength\":\"111\",\"weakness\":\"212\",\"skills\":[{\"skill_id\":1,\"skill_name\":\"Hello\",\"skill_level\":11}]}";
 	List<AssociateDetails> associateDetailsList = new ArrayList<AssociateDetails>();
 	Response response = new Response("Success");

@@ -10,7 +10,7 @@ export class SkillPipe implements PipeTransform {
     if (!searchText) return items;
     searchText = searchText.toLowerCase();
     return items.filter(it => {
-      return it.skillName.toLowerCase().includes(searchText);
+      return it.skill_name.toLowerCase().includes(searchText);
     });
   }
 
