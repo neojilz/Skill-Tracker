@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -48,7 +49,7 @@ public class SkillServiceImplTest {
 	public void testSaveSkills(){
 		Mockito.when(skillRepository.save(Mockito.any(Skills.class))).thenReturn(skills);
 		ResponseEntity<Response> response = skillService.saveSkill(skillReq);
-		assertEquals(500, response.getStatusCode());
+		assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
 	
 	
