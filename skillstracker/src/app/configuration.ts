@@ -1,1 +1,1 @@
-export const SERVICE_URI:String = "http://localhost:8082/SkillTracker";
+export const SERVICE_URI:String = "http://localhost:8081/SkillTracker";
